@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interactive Image Gallery</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        /* Preview image */
+        .preview {
+            margin-bottom: 20px;
+        }
+
+        .preview img {
+            width: 400px;
+            height: 250px;
+            border: 3px solid #333;
+            object-fit: cover;
+        }
+
+        /* Thumbnails */
+        .thumbnails {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .thumbnails img {
+            width: 80px;
+            height: 60px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            object-fit: cover;
+            transition: 0.3s;
+        }
+
+        .thumbnails img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Highlight selected thumbnail */
+        .thumbnails img.active {
+            border: 3px solid #007BFF;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Interactive Image Gallery</h2>
+
+    <!-- Preview Area -->
+    <div class="preview">
+        <img id="previewImage" src="https://blog.rrc.co.uk/wp-content/uploads/2019/06/shutterstock_274981748-1-1024x874.jpg">
+    </div>
+
+    <!-- Thumbnails -->
+    <div class="thumbnails">
+        <img src="https://blog.rrc.co.uk/wp-content/uploads/2019/06/shutterstock_274981748-1-1024x874.jpg" class="active">
+        <img src="https://gosharpener.com/content/uploads/photos/2024/10/sngine_6a5b301f150224ede4ed2b1cac3f93d0.jpg">
+        <img src="https://thumbs.dreamstime.com/b/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-118143566.jpg">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReSPF_7S4TTmRgR9LqSb7Ue401zth9F_mpRg&s">
+    </div>
+
+    <script>
+        const thumbnails = document.querySelectorAll(".thumbnails img");
+        const previewImage = document.getElementById("previewImage");
+
+        thumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener("click", () => {
+
+                // Change preview image
+                previewImage.src = thumbnail.src;
+
+                // Remove active class from all thumbnails
+                thumbnails.forEach(img => img.classList.remove("active"));
+
+                // Add active class to clicked thumbnail
+                thumbnail.classList.add("active");
+            });
+        });
+    </script>
+
+</body>
+</html>
+
