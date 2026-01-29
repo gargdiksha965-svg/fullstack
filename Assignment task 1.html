@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>My First HTML5 Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
@@ -18,18 +19,25 @@
         </ul>
     </nav>
 
-    <section>
-        <h2>Main Content</h2>
+    <main>
+        <section id="home">
+            <h2>Main Content</h2>
 
-        <article>
-            <h3>About HTML5</h3>
-            <p>
-                HTML5 is the latest version of HyperText Markup Language.
-                It introduces semantic elements that help structure web
-                pages more clearly and improve accessibility.
-            </p>
-        </article>
-    </section>
+            <article id="about">
+                <h3>About HTML5</h3>
+                <p>
+                    HTML5 is the latest version of HyperText Markup Language.
+                    It introduces semantic elements that help structure web
+                    pages more clearly and improve accessibility.
+                </p>
+            </article>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Email: info@example.com</p>
+        </section>
+    </main>
 
     <footer>
         <p>&copy; 2026 My Website. All rights reserved.</p>
@@ -37,3 +45,5 @@
 
 </body>
 </html>
+
+
