@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>React Product Card</title>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      padding: 40px;
+    }
+
+    .container {
+      display: flex;
+      gap: 25px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background: white;
+      width: 260px;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      text-align: left;
+    }
+
+    .image {
+      background: #eef2f7;
+      height: 150px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    .image div {
+      width: 70px;
+      height: 70px;
+      background: #d9dee5;
+      border-radius: 12px;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .stock {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .in {
+      background: #e6f8ed;
+      color: #1c7c43;
+    }
+
+    .out {
+      background: #fdeaea;
+      color: #c0392b;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    function ProductCard(props) {
+      return (
+        <div className="card">
+          <div className="image">
+            <div></div>
+          </div>
+          <div className="title">{props.name}</div>
+          <div className="price">${props.price}</div>
+          <span className={`stock ${props.inStock ? "in" : "out"}`}>
+            {props.inStock ? "In Stock" : "Out of Stock"}
+          </span>
+        </div>
+      );
+    }
+
+    function App() {
+      return (
+        <div className="container">
+          <ProductCard
+            name="Wireless Headphones"
+            price="129.99"
+            inStock={true}
+          />
+          <ProductCard
+            name="Mechanical Keyboard"
+            price="89.99"
+            inStock={false}
+          />
+          <ProductCard
+            name="Smart Watch"
+            price="199.99"
+            inStock={true}
+          />
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>

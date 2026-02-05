@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Person Class Hierarchy</title>
+
+  <!-- React CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      padding: 30px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .card {
+      background: white;
+      padding: 18px;
+      border-radius: 10px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+      margin-bottom: 15px;
+    }
+
+    .title {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .italic {
+      font-style: italic;
+      color: #555;
+      margin: 8px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    // Base Class
+    class Person {
+      constructor(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+
+      introduce() {
+        return `Hello, my name is ${this.name}.`;
+      }
+    }
+
+    // Student Class (Inheritance + Method Overriding)
+    class Student extends Person {
+      constructor(name, age, major) {
+        super(name, age);
+        this.major = major;
+      }
+
+      introduce() {
+        return `Hello, my name is ${this.name} and I'm studying ${this.major}.`;
+      }
+    }
+
+    // Teacher Class (Inheritance + Method Overriding)
+    class Teacher extends Person {
+      constructor(name, age, subject) {
+        super(name, age);
+        this.subject = subject;
+      }
+
+      introduce() {
+        return `Hello, my name is ${this.name} and I teach ${this.subject}.`;
+      }
+    }
+
+    function App() {
+      const people = [
+        new Person("Alex Johnson", 30),
+        new Student("Emma Watson", 20, "Computer Science"),
+        new Teacher("Dr. James Wilson", 45, "Mathematics")
+      ];
+
+      return (
+        <div className="container">
+          <h1>Person Class Hierarchy</h1>
+
+          {people.map((person, index) => (
+            <div className="card" key={index}>
+              <div className="title">
+                {person.name} ({person.constructor.name})
+              </div>
+              <div>Age: {person.age}</div>
+              <div className="italic">{person.introduce()}</div>
+
+              {person instanceof Student && (
+                <div>Major: {person.major}</div>
+              )}
+
+              {person instanceof Teacher && (
+                <div>Teaching: {person.subject}</div>
+              )}
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>

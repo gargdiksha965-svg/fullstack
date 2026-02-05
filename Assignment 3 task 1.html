@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile Page - Component Composition</title>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f7fb;
+      padding: 30px;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .header {
+      background-color: #0d6efd;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .profile {
+      padding: 20px;
+    }
+
+    .profile p {
+      margin: 8px 0;
+    }
+
+    .footer {
+      background-color: #e9ecef;
+      padding: 10px;
+      text-align: center;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    // Header Component
+    function Header() {
+      return <div className="header">User Profile</div>;
+    }
+
+    function ProfileDetails(props) {
+      return (
+        <div className="profile">
+          <p><strong>Name:</strong> {props.name}</p>
+          <p><strong>Email:</strong> {props.email}</p>
+          <p><strong>Department:</strong> {props.department}</p>
+        </div>
+      );
+    }
+
+    function Footer() {
+      return <div className="footer">© 2026 Profile Page</div>;
+    }
+
+    function App() {
+      const user = {
+        name: "Diksha Garg",
+        email: "diksha@gmail.com",
+        department: "Computer Science"
+      };
+
+      return (
+        <div className="container">
+          <Header />
+          <ProfileDetails
+            name={user.name}
+            email={user.email}
+            department={user.department}
+          />
+          <Footer />
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>

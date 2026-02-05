@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Conditional Rendering in React</title>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f7fb;
+      padding: 40px;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      background-color: #0d6efd;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    function LoginStatus() {
+      const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+      return (
+        <div className="container">
+          <h2>{isLoggedIn ? "Welcome, User" : "Please Login"}</h2>
+          {isLoggedIn && <p>You are logged in successfully.</p>}
+          <button onClick={() => setIsLoggedIn(!isLoggedIn)}>
+            {isLoggedIn ? "Logout" : "Login"}
+          </button>
+        </div>
+      );
+    }
+
+    function App() {
+      return <LoginStatus />;
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
+
